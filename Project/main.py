@@ -7,6 +7,10 @@ from flask_googlemaps import GoogleMaps, Map
 import random
 
 '''
+Deleted API Credentials due to privacy issues
+'''
+
+'''
 Firestore documentation:
 https://firebase.google.com/docs/firestore
 API:
