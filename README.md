@@ -1,4 +1,2 @@
 # Team5
-pip3 install flask
-pip3 install firebase-admin
-pip3 install flask-googlemaps
+Built a Web Application using Python, Flask, and Google Firebase. Also Built Android Mobile Application Using Kotlin and Google Firebase 
