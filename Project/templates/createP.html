@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Post Reports</title>
+
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row">
+               <div class="col">
+<h1>Create New Post</h1>
+<hr>
+<br>
+{% if message %}
+<div class="alert alert-danger" style="padding:2px"  role="alert">
+
+{{message}}
+</div>
+{% endif %}
+
+
+    <form method = "POST" action = "/createP" enctype="multipart/form-data">
+        <div>
+
+            <label for="theme" >Category</label><br>
+            <select class="form-control" name="p-category">
+
+              {% for doc in all_themes %}
+                <option value="{{doc.to_dict().name}}" >{{doc.to_dict().name.capitalize()}}</option>
+              {% endfor %}
+
+            </select><br>
+
+            <label >Post Title</label><br>
+            <input class="form-control" type="text" id="p-title" name="p-title" placeholder="Insert a report title"><br>
+            <label for="p-descri" id ="p-descri" name="p-content">Post Content</label><br>
+            <textarea class="form-control" id="post-description" name="post-content" rows="4" cols="50"></textarea><br>
+            <label for="p-tag">Post Tags</label><br>
+            <p>Enter tags seperated by a comma and space (Ex. Tag1, Tag2, Tag3)</p>
+            <input class="form-control" type="text" id="p-tag" name="p-tag" placeholder="Tag1, Tag2, Tag3" ><br>
+            <label for="p-image">Post Image</label><br>
+            <input class="form-control" placeholder="Select new image" type="file" id="img" name="img" accept="image/*"><br>
+
+            <div class="btn-group">
+
+            <input class="form-control btn btn-primary" type="submit" name="Submit" value="Submit">
+
+            <input class="form-control btn btn-default" type="reset" name="Cancel" value="Cancel">
+            </div>
+
+        </div>
+
+    </form>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

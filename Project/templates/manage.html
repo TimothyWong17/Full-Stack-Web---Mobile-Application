@@ -5,26 +5,72 @@
 {% endblock%}
 
 {% block body %}
-<h1>Manage your content</h1>
-<hr>
-<h2>Your reports</h2>
+<div class="container">
 
-<div>
-    <button type="button"> Prev Report</button>
-    <img src="" alt="image1">
-    <button type="button"> Next Report</button>
-</div>
+  <h1>Manage your content</h1>
+  <hr>
+  <br>
+  <div class="row">
+    <div class="col">
+      <h2>Your Posts</h2>
 
-<hr>
-<h3> Subscribed themes</h3>
-<div>
-    <a href = "#"> Theme 1</a>
-    <br>
-    <img src="" alt="image2">
-    <br>
-    <button type="button">unsubscribe</button>
+      <div>
+        {% if posts %}
+        {% for post in posts %}
+        <div class="row my-row p-3">
+          <img  width=100px height=100px src="{{post.to_dict().imgURL}}" alt="Post image">
+          <div class="my-col col-md-8 col-lg-9">
+            <p><b>{{post.to_dict().title.title()}}</b> By: {{post.to_dict().author.title()}}</p>
+            <p>{{post.to_dict().content}}</p>
+            <p>Category: {{post.to_dict().category.title()}}</p>
+            <p>Tags: {{post.to_dict().tags|join(", ")}}</p>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>No Posts</h5>
+        {% endif %}
+        <br>
+        <button type="button" id="prevButton"> Prev Post</button>
+
+        <button type="button" id="nextButton"> Next Post</button>
+      </div>
+    </div>
+    <hr>
+    <div class="col">
+      <h3> Subscribed Categories</h3>
+      <div>
+        {% if categories %}
+        <div class="allthemes-container">
+          <form class="allthemes-form" action="results" method="POST">
+            {% for cate in categories %}
+            <div class="row my-row p-3">
+              <button for="alltheme-theme-img" name="category" alt="Submit" value="{{cate.to_dict().name}}" style="background: none; border: none;">
+                <img  width=100px height=100px src="{{cate.to_dict().imgURL}}" alt="Post image">
+                <div class="my-col col-md-8 col-lg-9">
+                  <p><b>{{cate.to_dict().name.title()}}</b>
+                  </div>
+                </button>
+                <br>
+                <button for="alltheme-sub" name="category-Unsub" alt="Submit-Unsub" value="{{cate.to_dict().name}}" style="background: none; border: none;">
+                  <h5>Unsubscribe from {{cate.to_dict().name.title()}}</h5>
+                </button>
+
+              </div>
+
+              {% endfor %}
+              {% else %}
+              <h5>You are not subscribed to any categories!</h5>
+              {% endif %}
+
+            </div>
 
 
-</div>
-{%endblock%}
 
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {%endblock%}

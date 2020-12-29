@@ -1,3 +1,2 @@
 # Team5
-12:30 PM Tuesday Thursday
-10:00 AM Saturday Sunday
+Built a Web Application using Python, Flask, and Google Firebase. Also Built Android Mobile Application Using Kotlin and Google Firebase 
